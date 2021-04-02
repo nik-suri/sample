@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import { render } from '@testing-library/react';
+import Clicker from './Clicker'
+import { getUnits } from './util';
 
 // const app = App(props)
 // app.render()
@@ -20,37 +21,26 @@ import { render } from '@testing-library/react';
  * etc
  */
 
+/**
+ * Requirement:
+ * - As soon as the App loads, get the units from the "API".
+ * - Once we have the units, we want to display them in two places:
+ * 1. Directly above the spinning logo
+ * 2. Right next to the number which the user can click (so it reads, for example, as "3 seconds")
+ */
+
+
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      counter: 0
-    };
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    // this.state[counter]++; // bad
-    this.setState({
-      counter: this.state.counter + 1
-    })
-  }
-
   render() {
-    console.log(this.state.counter);
-
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
+            <getUnits />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <div onClick={this.handleClick}>
-            {this.state.counter}
-          </div>
+          <Clicker />
           <a
             className="App-link"
             href="https://reactjs.org"
